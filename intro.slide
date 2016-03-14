@@ -1,0 +1,99 @@
+Tampa Go Meetup
+15 Mar 2016
+Tags: go golang generate goa
+
+Brian Ketelsen
+Generator of All The Things
+bketelsen@gmail.com
+http://brianketelsen.com/
+@bketelsen
+ 
+* Qualifications To Speak
+ 
+.image ./gatt.jpg
+ 
+- Lazy, hates repititon
+- Likes writing Go
+ 
+* Why Generate Code?
+
+- Write a program once
+- Refine it until you like it
+- Make a template of it and use it everywhere
+- Single Source of Truth
+
+Your "design" or inputs to your code generation tool are your Single Source of Truth.
+
+* Code Generation Tools for Go
+
+- gRPC https://github.com/grpc/grpc-go
+- gen https://clipperhouse.github.io/gen/
+- dozens more
+
+Why?  Because it's easy, and Go has great tools to read and parse the AST if you want to use code as your input.
+Go also has powerful text templates built in.
+
+And who wants to solve the same problem twice?
+
+* goa - Design First, Then Win
+
+.image ./goa-logo@2x.png
+
+My favorite code generation tool started as an API generator for Go.  I spend a lot of time building APIs and really liked the approach of goa:
+
+- Design first.
+- Use net/context everywhere
+- Generate all the boilerplate, leave the business logic for the "hard work"
+
+* Design First
+
+goa uses Go code as its input.  This Go code is written using a DSL (written in Go) that makes your design process simple and clear.
+
+.code ./design.go /START OMIT/,/END OMIT/
+
+* dot imports
+
+BUT YOU SAID DOT IMPORTS ARE BAD?
+
+Yes, they're bad.  But if you are only using them in your design files, you run no risk.  Accept that the dot imports make the design DSL much prettier and move on.  kthxbai
+
+* Behind the Scenes
+
+Each of those DSL functions is populating a set of structures that describes your API.  Each function understands its current `context` and therefore can provide you with compile and generate-time errors when you're building your DSL incorrectly.
+
+* Designing an API
+
+Design code must live in the ./design package of your project's root.  It consists of one or more Go files (because it's a package) that describe your API.
+
+Design code should have the following parts:
+
+- API Definition
+- Resource definition
+- Media Type definition
+- User Type definition (Payloads for create/update methods)
+
+* API Definition
+
+The basics of your API
+- Host information
+- License information
+- Base path
+
+.code ./design/api.go /START OMIT/,/END OMIT/
+
+
+* API Definition (cont)
+
+.code ./design/api2.go /START OMIT/,/END OMIT/
+
+* Media Type Definition
+
+What are you sending in response to requests?
+
+* User Type Definition
+
+What are you receiving in PUT, PATCH, POST?
+
+* Now Make Yourself An API
+
+`goagen --design=github.com/your/project/design bootstrap`
