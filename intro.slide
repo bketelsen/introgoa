@@ -12,7 +12,7 @@ http://brianketelsen.com/
  
 .image ./gatt.jpg
  
-- Lazy, hates repititon
+- Lazy, hates repetiton
 - Likes writing Go
  
 * Why Generate Code?
@@ -63,7 +63,7 @@ Each of those DSL functions is populating a set of structures that describes you
 
 * Designing an API
 
-Design code must live in the ./design package of your project's root.  It consists of one or more Go files (because it's a package) that describe your API.
+Design code usually lives in the ./design package of your project's root.  It consists of one or more Go files (because it's a package) that describe your API.
 
 Design code should have the following parts:
 
@@ -71,6 +71,7 @@ Design code should have the following parts:
 - Resource definition
 - Media Type definition
 - User Type definition (Payloads for create/update methods)
+- Security Definition (landing this week?)
 
 * API Definition
 
