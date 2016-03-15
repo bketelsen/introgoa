@@ -49,7 +49,7 @@ My favorite code generation tool started as an API generator for Go.  I spend a 
 
 goa uses Go code as its input.  This Go code is written using a DSL (written in Go) that makes your design process simple and clear.
 
-.code ./design.go /START OMIT/,/END OMIT/
+.code design.go /START OMIT/,/END OMIT/
 
 * dot imports
 
@@ -80,30 +80,30 @@ The basics of your API
 - License information
 - Base path
 
-.code ./design/api.go /START OMIT/,/END OMIT/
+.code design/api.go /START OMIT/,/END OMIT/
 
 
 * API Definition (cont)
 
-.code ./design/api2.go /START OMIT/,/END OMIT/
+.code design/api2.go /START OMIT/,/END OMIT/
 
 * Media Type Definition
 
 What are you sending in response to requests?
 
-.code ./design/media_types.go /START OMIT/,/END OMIT/
+.code design/media_types.go /START OMIT/,/END OMIT/
 
 * User Type Definition
 
 What are you receiving in PUT, PATCH, POST?
 
-.code ./design/user_types.go /START OMIT/,/END OMIT/
+.code design/user_types.go /START OMIT/,/END OMIT/
 
 * Resource Definition
 
 Routing requests to controllers
 
-.code ./design/resources.go /START OMIT/,/END OMIT/
+.code design/resources.go /START OMIT/,/END OMIT/
 
 * Now Make Yourself An API
 
@@ -176,11 +176,11 @@ http://goa.design/extend/gorma.html
 - Understands `goa` media types, payloads, and views
 - Generates conversion functions to convert to and from models to your api's types
 
-.code ./models/review.go /START OMIT/,/END OMIT/
+.code models/review.go /START OMIT/,/END OMIT/
 
 * Beautiful Helpers
 
-.code ./models/review_helper.go /START OMIT/,/END OMIT/
+.code models/review_helper.go /START OMIT/,/END OMIT/
 
 * But wait... there's more
 
