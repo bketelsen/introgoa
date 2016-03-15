@@ -119,6 +119,8 @@ Routing requests to controllers
 - /client  = Go client package and CLI for your API
 - main.go  = wire it all together
 - {controller.go} = stubbed controllers for all your resources
+- Full swagger definition.  Use swagger-api or your favorite swagger service. 
+- Fully functioning app - just add business logic in the controllers
 
 * Can I get an Amen?
  
