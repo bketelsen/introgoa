@@ -48,6 +48,7 @@ var ProposalPayload = Type("ProposalPayload", func() {
 	Attribute("withdrawn", Boolean)
 })
 
+// START OMIT
 // ReviewModel defines the data structure used to create a review request body
 // It is also the base type for the review media type used to render reviews
 var ReviewPayload = Type("ReviewPayload", func() {
@@ -60,3 +61,5 @@ var ReviewPayload = Type("ReviewPayload", func() {
 		Maximum(5)
 	})
 })
+
+//END OMIT

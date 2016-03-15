@@ -65,8 +65,6 @@ var _ = Resource("auth", func() {
 	})
 })
 var _ = Resource("user", func() {
-	APIVersion("v1")
-
 	DefaultMedia(User)
 	BasePath("/users")
 	Action("list", func() {
@@ -133,8 +131,6 @@ var _ = Resource("user", func() {
 })
 
 var _ = Resource("proposal", func() {
-	APIVersion("v1")
-
 	Parent("user")
 	DefaultMedia(Proposal)
 	BasePath("/proposals")
@@ -198,8 +194,8 @@ var _ = Resource("proposal", func() {
 	})
 })
 
+// START OMIT
 var _ = Resource("review", func() {
-	APIVersion("v1")
 	Parent("proposal")
 	DefaultMedia(Review)
 	BasePath("/review")
@@ -215,6 +211,7 @@ var _ = Resource("review", func() {
 		})
 	})
 
+	// END OMIT
 	Action("show", func() {
 		Routing(
 			GET("/:reviewID"),
@@ -226,7 +223,6 @@ var _ = Resource("review", func() {
 		Response(OK)
 		Response(NotFound)
 	})
-
 	Action("create", func() {
 		Routing(
 			POST(""),

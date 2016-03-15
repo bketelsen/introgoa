@@ -90,10 +90,107 @@ The basics of your API
 
 What are you sending in response to requests?
 
+.code ./design/media_types.go /START OMIT/,/END OMIT/
+
 * User Type Definition
 
 What are you receiving in PUT, PATCH, POST?
 
+.code ./design/user_types.go /START OMIT/,/END OMIT/
+
+* Resource Definition
+
+Routing requests to controllers
+
+.code ./design/resources.go /START OMIT/,/END OMIT/
+
 * Now Make Yourself An API
 
 `goagen --design=github.com/your/project/design bootstrap`
+
+
+* What did you get?
+
+- /app     = controllers, routing logic, type conversions, validations
+- /js      = javascript client for your API
+- /swagger = swagger controller and swagger spec
+- /schema  = JSON schema for the API
+- /client  = Go client package and CLI for your API
+- main.go  = wire it all together
+- {controller.go} = stubbed controllers for all your resources
+
+* Can I get an Amen?
+ 
+.image ./gatt.jpg
+
+* Workflow
+
+- Write your design.  Take your time and think it through.
+- `goagen` with `bootstrap` the first time
+- Add code to the controllers
+- Compile, run, smile
+
+Changes required?
+
+- Change the design
+- `goagen` again {app,js,swagger,schema,client,main}
+- bootstrap and main won't overwrite your main.go and controllers
+
+* Nuance is in the Design
+
+Read the docs and examples at http://goa.design
+
+Very well documented project, thorough godoc, great examples.
+
+Nice website too :)
+
+* That's nice, I don't have an API
+
+We have a treat for you.
+
+`github.com/goadesign/goa/dslengine`
+
+The first thing I did when I found goa was submit a PR to make the DSL engine stand-alone.
+You can write a DSL to generate _anything_.
+
+* Gorma
+
+The next thing I did was write Gorma.
+
+Using the same style as `goa`, add some model definitions to your design package.
+
+Gorma generates the an entire data storage package for your API.
+
+http://goa.design/extend/gorma.html
+
+- Uses github.com/jinzhu/gorm as a lightweight ORM
+- Manages migrations
+- Can be used for full ORM operations, or just as a nice abstraction to allow you to swap databases
+- Use sqlite in dev, mysql in prod, same code!
+
+* Gorma Features
+
+- Understands `goa` media types, payloads, and views
+- Generates conversion functions to convert to and from models to your api's types
+
+.code ./models/review.go /START OMIT/,/END OMIT/
+
+* Beautiful Helpers
+
+.code ./models/review_helper.go /START OMIT/,/END OMIT/
+
+* But wait... there's more
+
+- Middleware 
+	JWT, LogRequest, LogResponse, RequestID,
+	Recover, Timeout, RequireHeader,
+	CORS, gzip
+- Pluggable loggers, use log15, logrus, anything else with tiny adapter.  Structured Log for Everyone!
+- Pluggable metrics collection - Prometheus, StatsD, more
+
+* What's Coming?
+
+- Better Security DSL, specify Oauth, Tokens, Basic Auth requirements in DSL
+- 1.0 *soon*
+- More examples, more documentation
+- Raphael Simon "The Godfather of goa" speaking at GopherCon 2016
